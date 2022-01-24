@@ -24,8 +24,8 @@ enum keycodes {
     OS_ALT,
     OS_GUI,
 
-    SW_WIN,  // Switch to next window         (cmd-tab)
-    SW_LANG, // Switch to next input language (ctl-spc)
+    SW_WIN,  // Switch to next window         (alt-tab)
+    SW_LANG, // Switch to next input language (gui-spc)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
