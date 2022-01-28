@@ -3,8 +3,8 @@
 #include "oneshot.h"
 #include "swapper.h"
 
-#define TAB_N C(KC_TAB)
-#define TAB_P C(S(KC_TAB))
+#define TAB_N C(KC_PGDN)
+#define TAB_P C(KC_PGUP)
 #define SPC_L C(G(KC_LEFT))
 #define SPC_R C(G(KC_RGHT))
 #define LA_SYM MO(SYM)
@@ -28,6 +28,16 @@ enum keycodes {
     SW_LANG, // Switch to next input language (gui-spc)
 };
 
+enum combos {
+  SPC_LSFT_ENT,
+};
+
+const uint16_t PROGMEM spc_lsft_combo[] = {KC_SPC, KC_LSFT, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [SPC_LSFT_ENT] = COMBO(spc_lsft_combo, KC_ENT),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
         KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
@@ -40,14 +50,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD, KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC, KC_GRV,
         KC_MINS, KC_ASTR, KC_EQL,  KC_UNDS, KC_DLR,  KC_HASH, OS_GUI,  OS_ALT,  OS_CTRL, OS_SHFT,
         KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_PERC, XXXXXXX, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM,
-                                   _______, _______, _______, _______
+                                   _______, KC_TAB,  _______, _______
     ),
 
     [NAV] = LAYOUT(
         KC_TAB,  SW_WIN,  TAB_P,   TAB_N,   KC_VOLU, RESET,   KC_HOME, KC_UP,   KC_END,  KC_DEL,
         OS_SHFT, OS_CTRL, OS_ALT,  OS_GUI,  KC_VOLD, KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC,
         SPC_L,   SPC_R,   KC_MPRV, KC_MNXT, KC_MPLY, XXXXXXX, KC_PGDN, KC_PGUP, SW_LANG, KC_ENT,
-                                   _______, _______, _______, _______
+                                   _______, _______, KC_BSPC, _______
     ),
 
     [NUM] = LAYOUT(
